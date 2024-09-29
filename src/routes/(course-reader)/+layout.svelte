@@ -3,15 +3,17 @@
   import { page } from "$app/stores";
   import { onMount } from "svelte";
   import { afterNavigate } from "$app/navigation";
-  import { setInitialClassState } from "@skeletonlabs/skeleton";
+  import { initializeStores, storePopup, setInitialClassState } from "@skeletonlabs/skeleton";
   import { storeTheme, transitionKey, currentLo, currentCourse } from "$lib/stores";
+  import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import CourseShell from "$lib/ui/app-shells/CourseShell.svelte";
   import type { Course, Lo } from "$lib/services/models/lo-types";
 
-  export let data: any;
-
   let course: Course;
   let lo: Lo;
+
+  initializeStores();
+  storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
   currentCourse.subscribe((current) => {
     course = current;
@@ -20,11 +22,6 @@
   currentLo.subscribe((current) => {
     lo = current;
   });
-
-  let { supabase, session } = data;
-  $: ({ supabase, session } = data);
-
-  let status: boolean;
 
   function setBodyThemeAttribute(): void {
     document.body.setAttribute("data-theme", $storeTheme);
