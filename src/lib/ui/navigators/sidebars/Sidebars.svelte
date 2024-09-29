@@ -4,7 +4,6 @@
   import { currentCourse } from "$lib/stores";
   import Calendar from "../../learning-objects/content/Calendar.svelte";
   import CourseContext from "../../learning-objects/structure/CourseContext.svelte";
-  import CoursePresence from "$lib/ui/time/CoursePresence.svelte";
   const drawerStore = getDrawerStore();
 </script>
 
@@ -22,10 +21,6 @@
   {:else if $drawerStore.id === "toc"}
     <Sidebar>
       <CourseContext course={$currentCourse} />
-    </Sidebar>
-  {:else if $drawerStore.id === "online"}
-    <Sidebar>
-      <CoursePresence />
     </Sidebar>
   {/if}
 </Drawer>

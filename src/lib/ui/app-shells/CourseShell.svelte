@@ -7,65 +7,21 @@
   import LayoutMenu from "$lib/ui/themes/menu/LayoutMenu.svelte";
   import SecondaryNavigator from "$lib/ui/navigators/SecondaryNavigator.svelte";
   import CourseTitle from "$lib/ui/navigators/titles/CourseTitle.svelte";
-  import CourseProfile from "$lib/ui/navigators/profiles/CourseProfile.svelte";
-  import LoginButton from "$lib/ui/navigators/buttons/LoginButton.svelte";
   import TocButton from "$lib/ui/navigators/buttons/TocButton.svelte";
   import InfoButton from "$lib/ui/navigators/buttons/InfoButton.svelte";
   import SearchButton from "$lib/ui/navigators/buttons/SearchButton.svelte";
-  import TutorsTimeIndicator from "$lib/ui/navigators/buttons/TutorsTimeIndicator.svelte";
-  import { currentCourse, onlineStatus, transitionKey } from "$lib/stores";
-  import { analyticsService } from "$lib/services/analytics/analytics";
-  import { goto } from "$app/navigation";
-  import { beforeUpdate } from "svelte";
-  import { fade } from "svelte/transition";
-  import type { SupabaseClient } from "@supabase/supabase-js";
-  import type { Session } from "@supabase/auth-js/src/lib/types";
-  import type { Course } from "$lib/services/models/lo-types";
-  import { ForgottenPassword } from "@supabase/auth-ui-svelte";
+  import { currentCourse, transitionKey } from "$lib/stores";
 
-  export let session: Session;
-  export let supabase: SupabaseClient;
+  import { fade } from "svelte/transition";
+
+  import type { Course } from "$lib/services/models/lo-types";
 
   const drawerStore = getDrawerStore();
-  const toastStore = getToastStore();
 
   let course: Course;
   currentCourse.subscribe((current) => {
     course = current;
   });
-
-  beforeUpdate(() => {
-    if ($currentCourse.authLevel > 0) {
-      if (!session?.user) {
-        goto("/auth");
-      }
-    }
-  });
-
-  let status: boolean;
-  function handleOnlineStatusChange() {
-    status = !status;
-    onlineStatus.set(status);
-    analyticsService.setOnlineStatus(course, status, session);
-  }
-
-  const handleSignOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.log(error);
-    } else {
-      toastStore.trigger({
-        message: "You have successfully logged out!",
-        background: "variant-filled-success"
-      });
-      goto("/");
-    }
-  };
-
-  const onlineDrawerOpen: any = () => {
-    const settings: DrawerSettings = { id: "online", position: "right" };
-    drawerStore.open(settings);
-  };
 </script>
 
 <AppShell class="h-screen">
@@ -80,24 +36,15 @@
       </svelte:fragment>
       <CalendarButton />
       <svelte:fragment slot="trail">
-        <TutorsTimeIndicator />
         {#if !$currentCourse.isPortfolio}
           <SearchButton />
         {/if}
         <span class="divider-vertical h-10 hidden lg:block" />
         <LayoutMenu />
         <span class="divider-vertical h-10 hidden lg:block" />
-        {#if !$currentCourse.isPrivate}
-          {#if session}
-            <div class="relative">
-              <CourseProfile {session} {handleOnlineStatusChange} {handleSignOut} {onlineDrawerOpen} />
-            </div>
-          {:else}
-            <LoginButton />
-          {/if}
-          {#if !$currentCourse.isPortfolio}
-            <TocButton />
-          {/if}
+
+        {#if !$currentCourse.isPortfolio}
+          <TocButton />
         {/if}
       </svelte:fragment>
     </MainNavigator>
