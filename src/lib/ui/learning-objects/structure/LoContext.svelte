@@ -28,7 +28,6 @@
         </a>
       </div>
     </svelte:fragment>
-
     <svelte:fragment slot="children">
       {#if lo.toc}
         <svelte:self {lo} />

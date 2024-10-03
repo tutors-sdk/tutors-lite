@@ -1,11 +1,11 @@
-import { courseService } from "$lib/services/course";
+import { courseService } from "$lib/services/course.svelte";
 import { currentLo } from "$lib/stores";
 
 export const ssr = false;
 
 export const load = async ({ params, parent, fetch }) => {
   const course = await courseService.readCourse(params.courseid, fetch);
-  currentLo.set(course);
+  currentLo.value = course;
 
   return {
     course,

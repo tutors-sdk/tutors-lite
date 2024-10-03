@@ -20,14 +20,14 @@
   });
 
   page.subscribe((path) => {
-    if (["course", "topic", "unit"].includes($currentLo.type)) {
+    if (["course", "topic", "unit"].includes(currentLo?.value?.type)) {
       transitionKey.set(path.url.pathname);
     }
   });
 </script>
 
 <svelte:head>
-  <title>{$currentLo?.title}</title>
+  <title>{currentLo?.value?.title}</title>
 </svelte:head>
 
 <CourseShell>

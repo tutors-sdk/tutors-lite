@@ -22,9 +22,9 @@
       cardWidths = "w-72";
     }
   });
-  currentLo.subscribe((current) => {
-    lo = current;
-  });
+  // currentLo.subscribe((current) => {
+  //   lo = current;
+  // });
   onDestroy(unsubscribe);
 </script>
 

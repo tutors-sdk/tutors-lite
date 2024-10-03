@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Lo } from "$lib/services/models/lo-types";
   import { currentCourse, currentLo } from "$lib/stores";
   import Icon from "./Icon.svelte";
   let truncated = [true, true, true, true, true, true, true];
@@ -17,21 +18,13 @@
     return input;
   }
 
-  interface Crumb {
-    route: string;
-    type: string;
-    title: string;
-  }
-  let breadCrumbs: Crumb[] = [];
+  let breadCrumbs: Lo[] = $derived(currentLo?.value?.breadCrumbs!);
 
-  currentLo.subscribe((lo) => {
-    breadCrumbs = [];
-    lo.breadCrumbs?.forEach((lo) => {
-      let route = lo.route;
-      if (route.endsWith("/")) {
-        route = route.slice(0, -1);
+  $effect(() => {
+    breadCrumbs.forEach((lo) => {
+      if (lo.route.endsWith("/")) {
+        lo.route = lo.route.slice(0, -1);
       }
-      breadCrumbs.push({ route: route, type: lo.type, title: lo.title });
     });
     if (breadCrumbs.length > 2) {
       if (breadCrumbs[1].type === "unit" || breadCrumbs[1].type === "side") {

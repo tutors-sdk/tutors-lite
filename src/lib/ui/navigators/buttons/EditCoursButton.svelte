@@ -29,14 +29,14 @@
     loRoute = "";
     if (path.params.loid) {
       loRoute = path.params.loid;
-      if ($currentLo.type == "lab") {
+      if (currentLo?.value?.type == "lab") {
         const lastSegment = path.params.loid.substring(path.params.loid.lastIndexOf("/") + 1);
         if (lastSegment.startsWith("book")) {
         } else {
           loRoute = insertSubstringAfterLastSlash(path.params.loid, currentLabStep);
           loRoute = loRoute + ".md?plain=1";
         }
-      } else if ($currentLo.type == "note") {
+      } else if (currentLo?.value?.type == "note") {
         loRoute = loRoute + "/note.md?plain=1";
       }
     }

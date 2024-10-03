@@ -18,7 +18,7 @@
 
   onMount(async () => {
     course = data.course;
-    currentLo.set(data.course);
+    currentLo.value = data.course;
     const labs = filterByType(data.course.los, "lab");
     const steps = filterByType(data.course.los, "step");
     const notes = filterByType(data.course.los, "note");

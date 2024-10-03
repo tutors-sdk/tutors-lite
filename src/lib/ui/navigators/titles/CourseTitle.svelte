@@ -6,37 +6,37 @@
   import { onDestroy } from "svelte";
   import Icon from "$lib/ui/themes/icons/Icon.svelte";
 
-  let lo: Lo;
+  // let lo: Lo;
   let wall = false;
-  const unsubscribe = currentLo.subscribe((current) => {
-    lo = current;
-    if (lo && lo.type === "unit") {
-      lo.img = lo.parentLo?.img;
-      lo.icon = lo.parentLo?.icon;
-    } else if (lo && lo.route.includes("wall")) {
-      wall = true;
-    }
-  });
-  onDestroy(unsubscribe);
+
+  // $effect(() => {
+  //   lo = current;
+  //   if (lo && lo.type === "unit") {
+  //     lo.img = lo.parentLo?.img;
+  //     lo.icon = lo.parentLo?.icon;
+  //   } else if (lo && lo.route.includes("wall")) {
+  //     wall = true;
+  //   }
+  // });
 </script>
 
-{#if $currentLo}
+{#if currentLo?.value}
   <div class="flex-1">
     <div class="inline-flex">
       {#if !wall}
-        <Image {lo} miniImage={true} />
+        <Image lo={currentLo?.value} miniImage={true} />
       {:else}
-        <Icon icon={getIcon(lo.type).type} class="text-{getIcon(lo.type).color}" width="40" height="40" />
+        <Icon icon={getIcon(currentLo?.value.type).type} class="text-{getIcon(currentLo?.value.type).color}" width="40" height="40" />
       {/if}
     </div>
   </div>
   <div class="ml-4 flex-nowrap">
     <div class="flex">
-      <h2 class="mr-4 hidden !text-sm font-bold sm:!text-lg md:inline-block">{$currentLo.title}</h2>
+      <h2 class="mr-4 hidden !text-sm font-bold sm:!text-lg md:inline-block">{currentLo?.value?.title}</h2>
     </div>
     <!-- Badge -->
     <div class="hidden md:block" target="_blank">
-      {#if $currentLo.title != $currentCourse?.title}
+      {#if currentLo?.value?.title != $currentCourse?.title}
         <p class="text-sm font-bold">{$currentCourse?.title}</p>
       {:else}
         <p class="text-sm font-bold">{$currentCourse?.properties?.credits}</p>
