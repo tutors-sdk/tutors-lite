@@ -16,16 +16,19 @@
 {#each lo?.toc as lo}
   <TreeViewItem open hideChildren>
     <svelte:fragment slot="lead">
-      <Icon type={lo.type} />
-    </svelte:fragment>
-    <a href={lo?.route} class="flex">
-      {@html lo.title}
-      {#if lo.video && lo.type != "panelvideo"}
-        <a class="pl-4" href={lo.video}>
-          <Icon type="video" />
+      <div class="flex">
+        <Icon type={lo.type} />
+        <a href={lo?.route}>
+          {@html lo.title}
+          {#if lo.video && lo.type != "panelvideo"}
+            <a class="pl-4" href={lo.video}>
+              <Icon type="video" />
+            </a>
+          {/if}
         </a>
-      {/if}
-    </a>
+      </div>
+    </svelte:fragment>
+
     <svelte:fragment slot="children">
       {#if lo.toc}
         <svelte:self {lo} />
