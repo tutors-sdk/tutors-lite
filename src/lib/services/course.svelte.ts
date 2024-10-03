@@ -51,7 +51,7 @@ export const courseService = {
   async readCourse(courseId: string, fetchFunction: typeof fetch): Promise<Course> {
     const course = await this.getOrLoadCourse(courseId, fetchFunction);
     currentCourse.set(course);
-    currentLo.set(course);
+    currentLo.value = course;
     courseUrl.set(course.courseUrl);
     return course;
   },
@@ -59,7 +59,7 @@ export const courseService = {
   async readTopic(courseId: string, topicId: string, fetchFunction: typeof fetch): Promise<Lo> {
     const course = await this.readCourse(courseId, fetchFunction);
     const topic = course.topicIndex.get(topicId);
-    if (topic) currentLo.set(topic);
+    if (topic) currentLo.value = topic;
     return topic!;
   },
 
@@ -78,7 +78,7 @@ export const courseService = {
       this.labs.set(labId, liveLab);
     }
 
-    currentLo.set(liveLab.lab);
+    currentLo.value = liveLab.lab;
     return liveLab;
   },
 
@@ -91,7 +91,7 @@ export const courseService = {
   async readLo(courseId: string, loId: string, fetchFunction: typeof fetch): Promise<Lo> {
     const course = await this.readCourse(courseId, fetchFunction);
     const lo = course.loIndex.get(loId);
-    if (lo) currentLo.set(lo);
+    if (lo) currentLo.value = lo;
     return lo!;
   }
 };
