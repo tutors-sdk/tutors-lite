@@ -13,7 +13,7 @@ export const load: PageLoad = async ({ url, params, fetch }) => {
   } else {
     liveLab.setActivePage(lastSegment);
   }
-  currentLabStepIndex.set(liveLab.index);
+  currentLabStepIndex.value = liveLab.index;
   return {
     lab: liveLab
   };

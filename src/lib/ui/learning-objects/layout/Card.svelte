@@ -28,16 +28,6 @@
 
   let headingText = "!text-lg font-semibold";
   let cardWidths = "w-60 h-[24rem]";
-
-  $effect(() => {
-    if (layout.value === "compacted") {
-      headingText = "!text-md font-medium";
-      cardWidths = "w-36 h-[18rem]";
-    } else {
-      headingText = "!text-lg font-semibold";
-      cardWidths = "w-60 h-[24rem]";
-    }
-  });
 </script>
 
 <a href={lo.route} {target}>

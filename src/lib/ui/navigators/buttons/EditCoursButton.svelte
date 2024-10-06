@@ -7,9 +7,13 @@
 
   let currentLabStep = "";
   let loRoute = "";
-  currentLabStepIndex.subscribe((stepIndex) => {
-    currentLabStep = String(stepIndex).padStart(2, "0") + ".";
+
+  $effect(() => {
+    currentLabStep = String(currentLabStepIndex.value).padStart(2, "0") + ".";
   });
+  // currentLabStepIndex.subscribe((stepIndex) => {
+  //   currentLabStep = String(stepIndex).padStart(2, "0") + ".";
+  // });
 
   function insertSubstringAfterLastSlash(originalString: string, substringToInsert: string) {
     const lastSlashIndex = originalString.lastIndexOf("/");

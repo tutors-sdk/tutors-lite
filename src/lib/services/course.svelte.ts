@@ -52,7 +52,7 @@ export const courseService = {
     const course = await this.getOrLoadCourse(courseId, fetchFunction);
     currentCourse.value = course;
     currentLo.value = course;
-    courseUrl.set(course.courseUrl);
+    courseUrl.value = course.courseUrl;
     return course;
   },
 
