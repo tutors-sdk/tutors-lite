@@ -36,10 +36,10 @@
     </div>
     <!-- Badge -->
     <div class="hidden md:block" target="_blank">
-      {#if currentLo?.value?.title != $currentCourse?.title}
-        <p class="text-sm font-bold">{$currentCourse?.title}</p>
+      {#if currentLo?.value?.title != currentCourse?.value?.title}
+        <p class="text-sm font-bold">{currentCourse?.value?.title}</p>
       {:else}
-        <p class="text-sm font-bold">{$currentCourse?.properties?.credits}</p>
+        <p class="text-sm font-bold">{currentCourse?.value?.properties?.credits}</p>
       {/if}
     </div>
   </div>

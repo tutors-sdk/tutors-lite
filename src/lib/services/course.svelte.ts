@@ -50,7 +50,7 @@ export const courseService = {
 
   async readCourse(courseId: string, fetchFunction: typeof fetch): Promise<Course> {
     const course = await this.getOrLoadCourse(courseId, fetchFunction);
-    currentCourse.set(course);
+    currentCourse.value = course;
     currentLo.value = course;
     courseUrl.set(course.courseUrl);
     return course;

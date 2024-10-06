@@ -3,7 +3,7 @@
   import { currentCourse, currentLabStepIndex, currentLo } from "$lib/stores";
   import Icon from "$lib/ui/themes/icons/Icon.svelte";
 
-  let editRoute = $currentCourse.properties.github;
+  let editRoute = currentCourse?.value?.properties.github;
 
   let currentLabStep = "";
   let loRoute = "";
@@ -41,7 +41,7 @@
       }
     }
 
-    editRoute = `${$currentCourse.properties.github}/${loRoute}`;
+    editRoute = `${currentCourse?.value?.properties.github}/${loRoute}`;
   });
 </script>
 

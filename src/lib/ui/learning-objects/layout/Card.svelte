@@ -47,7 +47,7 @@
         <div class="line-clamp-2 flex-auto {headingText} !text-black dark:!text-white">
           {lo.title}
         </div>
-        {#if $currentCourse && !$currentCourse.areVideosHidden}
+        {#if currentCourse?.value?.areVideosHidden}
           {#if lo.video && lo.type !== "video"}
             <a href={lo.video}>
               <Icon type="video" />

@@ -11,16 +11,16 @@
   {#if $drawerStore.id === "info"}
     <Sidebar>
       <prose class="prose dark:prose-invert">
-        {@html $currentCourse?.contentHtml}
+        {@html currentCourse?.value?.contentHtml}
       </prose>
     </Sidebar>
   {:else if $drawerStore.id === "calendar"}
     <Sidebar>
-      <Calendar calendar={$currentCourse?.courseCalendar} />
+      <Calendar calendar={currentCourse?.value?.courseCalendar} />
     </Sidebar>
   {:else if $drawerStore.id === "toc"}
     <Sidebar>
-      <CourseContext course={$currentCourse} />
+      <CourseContext course={currentCourse.value} />
     </Sidebar>
   {/if}
 </Drawer>

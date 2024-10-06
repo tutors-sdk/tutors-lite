@@ -6,9 +6,9 @@
   import TutorsVersion from "./TutorsVersion.svelte";
 </script>
 
-{#if $currentCourse?.footer}
+{#if currentCourse?.value?.footer}
   <div class="fixed bottom-0 left-0 w-screen">
-    <img src="https://{$currentCourse.courseUrl}/{$currentCourse.footer}" alt="sponsors" />
+    <img src="https://{currentCourse?.value?.courseUrl}/{currentCourse?.value?.footer}" alt="sponsors" />
   </div>
 {:else}
   <div class="bg-surface-100-800-token border-t-[1px] border-surface-200-700-token bottom-0 mt-2">

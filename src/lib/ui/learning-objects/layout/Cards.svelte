@@ -26,8 +26,8 @@
   }
 
   onMount(async () => {
-    if ($currentCourse?.properties.ignorepin) {
-      ignorePin = $currentCourse.properties.ignorepin.toString();
+    if (currentCourse?.value?.properties.ignorepin) {
+      ignorePin = currentCourse?.value?.properties.ignorepin.toString();
       window.addEventListener("keydown", keypressInput);
     }
   });

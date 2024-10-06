@@ -17,11 +17,6 @@
   import type { Course } from "$lib/services/models/lo-types";
 
   const drawerStore = getDrawerStore();
-
-  let course: Course;
-  currentCourse.subscribe((current) => {
-    course = current;
-  });
 </script>
 
 <AppShell class="h-screen">
@@ -36,14 +31,14 @@
       </svelte:fragment>
       <CalendarButton />
       <svelte:fragment slot="trail">
-        {#if !$currentCourse.isPortfolio}
+        {#if !currentCourse?.value?.isPortfolio}
           <SearchButton />
         {/if}
         <span class="divider-vertical h-10 hidden lg:block" />
         <LayoutMenu />
         <span class="divider-vertical h-10 hidden lg:block" />
 
-        {#if !$currentCourse.isPortfolio}
+        {#if !currentCourse?.value?.isPortfolio}
           <TocButton />
         {/if}
       </svelte:fragment>

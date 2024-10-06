@@ -36,9 +36,9 @@
 
 <div class="my-2 mx-8 overflow-hidden p-1">
   <ol class="breadcrumb-nonresponsive text-xs">
-    {#if $currentCourse?.properties?.parent != null}
+    {#if currentCourse?.value?.properties?.parent != null}
       <li class="crumb">
-        <a href="/{$currentCourse.properties?.parent}" class="!space-x-[-1rem] lg:!space-x-0">
+        <a href="/{currentCourse?.value?.properties?.parent}" class="!space-x-[-1rem] lg:!space-x-0">
           <Icon type="programHome" tip={`Go to Course Home`} />
         </a>
       </li>
