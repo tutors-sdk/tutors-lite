@@ -8,13 +8,13 @@
   export let units: Composite[];
 
   let text = "!text-xl font-semibold";
-  const unsubscribe = layout.subscribe((layout) => {
+  const unsubscribe = (layout) => {
     if (layout === "compacted") {
       text = "!text-xl font-semibold";
     } else {
       text = "!text-xl font-semibold";
     }
-  });
+  };
   onDestroy(unsubscribe);
 </script>
 

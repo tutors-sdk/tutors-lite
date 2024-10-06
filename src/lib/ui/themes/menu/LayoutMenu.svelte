@@ -16,7 +16,7 @@
   });
 
   // const themes = ["tutors", "dyslexia", "skeleton", "seafoam", "vintage"];
-  layout.set("expanded");
+  layout.value = "expanded";
 </script>
 
 <div class="relative">
