@@ -14,16 +14,13 @@
     setIconLibForTheme(currentTheme.value);
   }
 
-  onMount(() => {
-    // Sync lightswitch with the theme
-    if (!("modeCurrent" in localStorage)) {
-      setModeCurrent(getModeOsPrefers());
-    }
-    if ("theme" in localStorage) {
-      currentTheme.value = localStorage.theme;
-    }
-    setTheme(currentTheme.value);
-  });
+  if (!("modeCurrent" in localStorage)) {
+    setModeCurrent(getModeOsPrefers());
+  }
+  if ("theme" in localStorage) {
+    currentTheme.value = localStorage.theme;
+  }
+  setTheme(currentTheme.value);
 
   layout.value = "expanded";
 </script>

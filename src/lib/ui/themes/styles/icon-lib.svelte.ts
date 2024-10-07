@@ -18,16 +18,11 @@ export function setIconLibForTheme(theme: string) {
   StandardIconLib = themeIcons[currentTheme.value];
 }
 
-export function setIconLib(iconLib: any) {
-  StandardIconLib = iconLib;
-}
-
 export function getIcon(type: string): IconType {
   return StandardIconLib[type];
 }
 
-export const currentIconLib: any = StandardIconLib;
-
 export function addIcon(type: string, icon: IconType) {
-  StandardIconLib[type] = icon;
+  FluentIconLib[type] = icon;
+  HeroIconLib[type] = icon;
 }
