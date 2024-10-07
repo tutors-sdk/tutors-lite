@@ -3,22 +3,15 @@
   import { page } from "$app/stores";
   import { onMount } from "svelte";
   import { initializeStores, storePopup, setInitialClassState } from "@skeletonlabs/skeleton";
-  import { storeTheme, transitionKey, currentLo } from "$lib/stores";
+  import { transitionKey, currentLo } from "$lib/stores";
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import CourseShell from "$lib/ui/app-shells/CourseShell.svelte";
 
   initializeStores();
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
-  function setBodyThemeAttribute(): void {
-    document.body.setAttribute("data-theme", $storeTheme);
-  }
-
   onMount(() => {
     setInitialClassState();
-    //storeTheme.subscribe(setBodyThemeAttribute);
-    let themeName = localStorage.theme;
-    document.body.setAttribute("data-theme", themeName);
   });
 
   page.subscribe((path) => {

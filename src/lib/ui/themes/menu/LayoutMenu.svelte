@@ -1,18 +1,17 @@
 <script lang="ts">
   import { popup, setModeCurrent, getModeOsPrefers } from "@skeletonlabs/skeleton";
-  import { layout } from "$lib/stores";
+  import { currentTheme, layout } from "$lib/stores";
   import Icon from "$lib/ui/themes/icons/Icon.svelte";
   import { onMount } from "svelte";
   import DarkModeToggle from "./DarkModeToggle.svelte";
   import LayoutToggle from "./LayoutToggle.svelte";
-  import { themes } from "../styles/icon-lib";
-
-  let currentTheme = "tutors";
+  import { setIconLibForTheme, themes } from "../styles/icon-lib.svelte";
 
   function setTheme(theme: string): void {
-    currentTheme = theme;
-    document.body.setAttribute("data-theme", currentTheme);
-    localStorage.theme = currentTheme;
+    currentTheme.value = theme;
+    document.body.setAttribute("data-theme", currentTheme.value);
+    localStorage.theme = currentTheme.value;
+    setIconLibForTheme(currentTheme.value);
   }
 
   onMount(() => {
@@ -21,9 +20,9 @@
       setModeCurrent(getModeOsPrefers());
     }
     if ("theme" in localStorage) {
-      currentTheme = localStorage.theme;
+      currentTheme.value = localStorage.theme;
     }
-    setTheme(currentTheme);
+    setTheme(currentTheme.value);
   });
 
   layout.value = "expanded";
@@ -49,7 +48,7 @@
     <ul class="list">
       {#each themes as theme}
         <li class="option !p-0">
-          <button class="btn w-full flex justify-between" class:!variant-soft-primary={theme === currentTheme} onclick={setTheme(theme)}>
+          <button class="btn w-full flex justify-between" class:!variant-soft-primary={theme === currentTheme.value} onclick={setTheme(theme)}>
             <span class="flex-none">{theme}</span>
           </button>
         </li>

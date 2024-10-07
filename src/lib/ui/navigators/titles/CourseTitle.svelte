@@ -2,7 +2,7 @@
   import { currentCourse, currentLo } from "$lib/stores";
   import Image from "../../themes/Image.svelte";
   import type { Lo } from "$lib/services/models/lo-types";
-  import { getIcon } from "../../themes/styles/icon-lib";
+  import { getIcon } from "../../themes/styles/icon-lib.svelte";
   import { onDestroy } from "svelte";
   import Icon from "$lib/ui/themes/icons/Icon.svelte";
 

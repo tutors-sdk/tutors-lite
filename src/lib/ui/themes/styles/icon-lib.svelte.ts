@@ -1,4 +1,4 @@
-import { storeTheme } from "$lib/stores";
+import { currentTheme } from "$lib/stores";
 import type { IconType } from "$lib/services/models/lo-types";
 import { FluentIconLib } from "../icons/fluent-icons";
 import { HeroIconLib } from "../icons/hero-icons";
@@ -14,11 +14,9 @@ export const themeIcons = {
   vintage: HeroIconLib
 };
 
-let currentTheme = "tutors";
-storeTheme.subscribe((current) => {
-  currentTheme = current;
-  StandardIconLib = themeIcons[current];
-});
+export function setIconLibForTheme(theme: string) {
+  StandardIconLib = themeIcons[currentTheme.value];
+}
 
 export function setIconLib(iconLib: any) {
   StandardIconLib = iconLib;

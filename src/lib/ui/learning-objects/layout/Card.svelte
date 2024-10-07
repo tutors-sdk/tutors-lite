@@ -2,7 +2,7 @@
   import type { Lo } from "$lib/services/models/lo-types";
   import { currentCourse, layout } from "$lib/stores";
   import Image from "../../themes/Image.svelte";
-  import { getIcon } from "../../themes/styles/icon-lib";
+  import { getIcon } from "../../themes/styles/icon-lib.svelte";
   import { cardTransition } from "$lib/ui/animations";
   import Icon from "$lib/ui/themes/icons/Icon.svelte";
 
