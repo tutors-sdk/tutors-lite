@@ -43,7 +43,7 @@
   }, 500);
 </script>
 
-{#if currentCourse?.value?.areVideosHidden}
+{#if !currentCourse?.value?.areVideosHidden}
   <div class="w-full p-8">
     {#if heanet}
       {#if showVime}
@@ -73,6 +73,7 @@
         <iframe title={lo.title} class="absolute inset-0 h-full w-full" src="https://www.youtube.com/embed/{defaultId}?&autoplay=1" allow="encrypted-media" allowfullscreen />
       </div>
     {:else}
+      <p>video</p>
       <div class="relative mx-auto aspect-video" style="padding-top: 40%;">
         <iframe title={lo.title} class="absolute inset-0 h-full w-full" src="https://www.youtube.com/embed/{defaultId}" allow="encrypted-media" allowfullscreen />
       </div>

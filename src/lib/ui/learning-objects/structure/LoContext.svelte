@@ -2,6 +2,7 @@
   import type { Lo } from "$lib/services/models/lo-types";
   import { TreeViewItem } from "@skeletonlabs/skeleton";
   import Icon from "$lib/ui/themes/icons/Icon.svelte";
+  import { currentCourse } from "$lib/stores";
 
   export let lo: Lo;
   if (lo?.toc) {
@@ -16,16 +17,16 @@
 {#each lo?.toc as lo}
   <TreeViewItem open hideChildren>
     <svelte:fragment slot="lead">
-      <div class="flex">
+      <div class="flex justify-end">
         <Icon type={lo.type} />
-        <a href={lo?.route}>
+        <a href={lo?.route} class="ml-2">
           {@html lo.title}
-          {#if lo.video && lo.type != "panelvideo"}
-            <a class="pl-4" href={lo.video}>
-              <Icon type="video" />
-            </a>
-          {/if}
         </a>
+        {#if lo.video && lo.type != "panelvideo" && !currentCourse?.value?.areVideosHidden}
+          <a class="pl-4" href={lo.video}>
+            <Icon type="video" />
+          </a>
+        {/if}
       </div>
     </svelte:fragment>
     <svelte:fragment slot="children">
