@@ -16,11 +16,13 @@
 
   onMount(() => {
     setInitialClassState();
-    storeTheme.subscribe(setBodyThemeAttribute);
+    //storeTheme.subscribe(setBodyThemeAttribute);
+    let themeName = localStorage.theme;
+    document.body.setAttribute("data-theme", themeName);
   });
 
   page.subscribe((path) => {
-    if (["course", "topic", "unit"].includes(currentLo?.value?.type)) {
+    if (["course", "topic", "unit"].includes(currentLo?.value?.type!)) {
       transitionKey.set(path.url.pathname);
     }
   });

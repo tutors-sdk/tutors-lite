@@ -5,17 +5,27 @@
   import { onMount } from "svelte";
   import DarkModeToggle from "./DarkModeToggle.svelte";
   import LayoutToggle from "./LayoutToggle.svelte";
-  import ThemeButton from "./ThemeButton.svelte";
   import { themes } from "../styles/icon-lib";
+
+  let currentTheme = "tutors";
+
+  function setTheme(theme: string): void {
+    currentTheme = theme;
+    document.body.setAttribute("data-theme", currentTheme);
+    localStorage.theme = currentTheme;
+  }
 
   onMount(() => {
     // Sync lightswitch with the theme
     if (!("modeCurrent" in localStorage)) {
       setModeCurrent(getModeOsPrefers());
     }
+    if ("theme" in localStorage) {
+      currentTheme = localStorage.theme;
+    }
+    setTheme(currentTheme);
   });
 
-  // const themes = ["tutors", "dyslexia", "skeleton", "seafoam", "vintage"];
   layout.value = "expanded";
 </script>
 
@@ -39,7 +49,9 @@
     <ul class="list">
       {#each themes as theme}
         <li class="option !p-0">
-          <ThemeButton themeName={theme} />
+          <button class="btn w-full flex justify-between" class:!variant-soft-primary={theme === currentTheme} onclick={setTheme(theme)}>
+            <span class="flex-none">{theme}</span>
+          </button>
         </li>
       {/each}
     </ul>
