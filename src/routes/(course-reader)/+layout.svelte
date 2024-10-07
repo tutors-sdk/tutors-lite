@@ -1,8 +1,7 @@
 <script lang="ts">
   import "../../app.postcss";
   import { page } from "$app/stores";
-  import { onMount } from "svelte";
-  import { initializeStores, storePopup, setInitialClassState } from "@skeletonlabs/skeleton";
+  import { initializeStores, storePopup } from "@skeletonlabs/skeleton";
   import { transitionKey, currentLo } from "$lib/stores";
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import CourseShell from "$lib/ui/app-shells/CourseShell.svelte";
@@ -10,13 +9,9 @@
   initializeStores();
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
-  onMount(() => {
-    setInitialClassState();
-  });
-
   page.subscribe((path) => {
     if (["course", "topic", "unit"].includes(currentLo?.value?.type!)) {
-      transitionKey.set(path.url.pathname);
+      transitionKey.value = path.url.pathname;
     }
   });
 </script>

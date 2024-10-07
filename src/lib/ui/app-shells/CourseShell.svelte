@@ -45,7 +45,7 @@
     </MainNavigator>
     <SecondaryNavigator />
   </svelte:fragment>
-  {#key $transitionKey}
+  {#key transitionKey.value}
     <div id="app" class="h-full">
       <div id="top" />
       <div class="mx-auto my-4">

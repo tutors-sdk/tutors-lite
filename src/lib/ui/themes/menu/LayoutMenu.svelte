@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { popup, setModeCurrent, getModeOsPrefers } from "@skeletonlabs/skeleton";
+  import { popup, setModeCurrent, getModeOsPrefers, setInitialClassState } from "@skeletonlabs/skeleton";
   import { currentTheme, layout } from "$lib/stores";
   import Icon from "$lib/ui/themes/icons/Icon.svelte";
-  import { onMount } from "svelte";
   import DarkModeToggle from "./DarkModeToggle.svelte";
   import LayoutToggle from "./LayoutToggle.svelte";
   import { setIconLibForTheme, themes } from "../styles/icon-lib.svelte";
+  import { onMount } from "svelte";
 
   function setTheme(theme: string): void {
     currentTheme.value = theme;
@@ -14,13 +14,16 @@
     setIconLibForTheme(currentTheme.value);
   }
 
-  if (!("modeCurrent" in localStorage)) {
-    setModeCurrent(getModeOsPrefers());
-  }
-  if ("theme" in localStorage) {
-    currentTheme.value = localStorage.theme;
-  }
-  setTheme(currentTheme.value);
+  onMount(() => {
+    setInitialClassState();
+    if (!("modeCurrent" in localStorage)) {
+      setModeCurrent(getModeOsPrefers());
+    }
+    if ("theme" in localStorage) {
+      currentTheme.value = localStorage.theme;
+    }
+    setTheme(currentTheme.value);
+  });
 
   layout.value = "expanded";
 </script>
