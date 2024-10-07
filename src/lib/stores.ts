@@ -1,8 +1,5 @@
-import { writable, type Writable } from "svelte/store";
 import type { Lo, Course } from "$lib/services/models/lo-types";
-import { rune } from "./services/runes.svelte";
-
-// export const transitionKey = writable("");
+import { rune } from "./services/utils/runes.svelte";
 
 export const transitionKey = rune("");
 export const layout = rune("expanded");
