@@ -2,7 +2,7 @@
   import "../../app.postcss";
   import { page } from "$app/stores";
   import { initializeStores, storePopup } from "@skeletonlabs/skeleton";
-  import { transitionKey, currentLo } from "$lib/stores";
+  import { transitionKey, currentLo } from "$lib/runes";
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import CourseShell from "$lib/ui/app-shells/CourseShell.svelte";
 

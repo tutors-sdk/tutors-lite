@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Composite } from "$lib/services/models/lo-types";
-  import { layout } from "$lib/stores";
+  import { layout } from "$lib/runes";
   import { onDestroy } from "svelte";
   import Panels from "./Panels.svelte";
   import Cards from "./Cards.svelte";

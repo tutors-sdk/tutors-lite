@@ -2,7 +2,7 @@
   import type { Lo } from "$lib/services/models/lo-types";
   import { TreeViewItem } from "@skeletonlabs/skeleton";
   import Icon from "$lib/ui/themes/icons/Icon.svelte";
-  import { currentCourse } from "$lib/stores";
+  import { currentCourse } from "$lib/runes";
 
   export let lo: Lo;
   if (lo?.toc) {

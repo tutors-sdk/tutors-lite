@@ -1,6 +1,6 @@
 <script lang="ts">
   import { popup, setModeCurrent, getModeOsPrefers, setInitialClassState } from "@skeletonlabs/skeleton";
-  import { currentTheme, layout } from "$lib/stores";
+  import { currentTheme, layout } from "$lib/runes";
   import Icon from "$lib/ui/themes/icons/Icon.svelte";
   import DarkModeToggle from "./DarkModeToggle.svelte";
   import LayoutToggle from "./LayoutToggle.svelte";

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { currentCourse, currentLo } from "$lib/stores";
+  import { currentCourse, currentLo } from "$lib/runes";
   import Image from "../../themes/Image.svelte";
   import type { Lo } from "$lib/services/models/lo-types";
   import { getIcon } from "../../themes/styles/icon-lib.svelte";

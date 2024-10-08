@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import type { Lo } from "$lib/services/models/lo-types";
-  import { currentCourse } from "$lib/stores";
+  import { currentCourse } from "$lib/runes";
   import { getIcon } from "../../themes/styles/icon-lib.svelte";
 
   let firefox = false;

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Drawer, getDrawerStore } from "@skeletonlabs/skeleton";
   import Sidebar from "./Sidebar.svelte";
-  import { currentCourse } from "$lib/stores";
+  import { currentCourse } from "$lib/runes";
   import Calendar from "../../learning-objects/content/Calendar.svelte";
   import CourseContext from "../../learning-objects/structure/CourseContext.svelte";
   const drawerStore = getDrawerStore();

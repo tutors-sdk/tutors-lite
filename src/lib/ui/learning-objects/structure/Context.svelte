@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Lo } from "$lib/services/models/lo-types";
+  import { scale } from "svelte/transition";
   import LoContextPanel from "../layout/LoContextPanel.svelte";
   export let lo: Lo;
   let loContext = lo;
@@ -13,7 +14,9 @@
 <div class="flex justify-between ml-10 mr-10">
   <div class="w-full">
     {#key lo}
+      <!-- <div in:scale={{ duration: 300, delay: 200 }}> -->
       <slot />
+      <!-- </div> -->
     {/key}
   </div>
   {#if loContext}

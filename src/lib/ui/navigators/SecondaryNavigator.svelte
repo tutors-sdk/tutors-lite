@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { currentCourse } from "$lib/stores";
+  import { currentCourse } from "$lib/runes";
   import { fly } from "svelte/transition";
   import Breadcrumbs from "../themes/icons/Breadcrumbs.svelte";
   import EditCoursButton from "./buttons/EditCoursButton.svelte";

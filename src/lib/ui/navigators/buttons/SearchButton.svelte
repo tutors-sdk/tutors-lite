@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { currentCourse } from "$lib/stores";
+  import { currentCourse } from "$lib/runes";
   import Icon from "$lib/ui/themes/icons/Icon.svelte";
 </script>
 

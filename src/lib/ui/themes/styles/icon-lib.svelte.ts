@@ -1,4 +1,4 @@
-import { currentTheme } from "$lib/stores";
+import { currentTheme } from "$lib/runes";
 import type { IconType } from "$lib/services/models/lo-types";
 import { FluentIconLib } from "../icons/fluent-icons";
 import { HeroIconLib } from "../icons/hero-icons";

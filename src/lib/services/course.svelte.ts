@@ -1,4 +1,4 @@
-import { courseUrl, currentCourse, currentLo } from "$lib/stores";
+import { courseUrl, currentCourse, currentLo } from "$lib/runes";
 import type { Lo, Course, Lab } from "$lib/services/models/lo-types";
 import { decorateCourseTree } from "./models/lo-tree";
 import { LiveLab } from "./models/live-lab";

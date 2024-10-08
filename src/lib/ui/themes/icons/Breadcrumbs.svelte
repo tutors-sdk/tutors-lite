@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Lo } from "$lib/services/models/lo-types";
-  import { currentCourse, currentLo } from "$lib/stores";
+  import { currentCourse, currentLo } from "$lib/runes";
   import Icon from "./Icon.svelte";
   let truncated = [true, true, true, true, true, true, true];
 

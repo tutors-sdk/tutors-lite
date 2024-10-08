@@ -1,5 +1,5 @@
 import { courseService } from "$lib/services/course.svelte";
-import { currentLo } from "$lib/stores";
+import { currentLo } from "$lib/runes";
 
 export const ssr = false;
 
