@@ -12,7 +12,9 @@
   import SearchButton from "$lib/ui/navigators/buttons/SearchButton.svelte";
   import { currentCourse, transitionKey } from "$lib/runes";
   import { fade, scale } from "svelte/transition";
-  let { children } = $props();
+
+  type Props = { children: any };
+  let { children }: Props = $props();
 </script>
 
 <AppShell class="h-screen">

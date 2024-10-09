@@ -6,6 +6,9 @@
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import CourseShell from "$lib/ui/app-shells/CourseShell.svelte";
 
+  type Props = { children: any };
+  let { children }: Props = $props();
+
   initializeStores();
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
@@ -21,5 +24,5 @@
 </svelte:head>
 
 <CourseShell>
-  <slot />
+  {@render children()}
 </CourseShell>
