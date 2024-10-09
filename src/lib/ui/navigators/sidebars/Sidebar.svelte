@@ -1,6 +1,8 @@
 <script lang="ts">
   import { getDrawerStore } from "@skeletonlabs/skeleton";
-  type Props = { children: any };
+  import type { Snippet } from "svelte";
+
+  type Props = { children: Snippet };
   let { children }: Props = $props();
 
   const drawerStore = getDrawerStore();

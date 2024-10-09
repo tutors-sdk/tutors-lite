@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { Lo } from "$lib/services/models/lo-types";
+  import type { Snippet } from "svelte";
   import LoContextPanel from "../layout/LoContextPanel.svelte";
-  type Props = { children: any; lo: Lo };
+  type Props = { children: Snippet; lo: Lo };
 
   let { children, lo }: Props = $props();
 

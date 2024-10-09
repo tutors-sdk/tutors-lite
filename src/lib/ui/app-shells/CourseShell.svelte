@@ -12,8 +12,9 @@
   import SearchButton from "$lib/ui/navigators/buttons/SearchButton.svelte";
   import { currentCourse, transitionKey } from "$lib/runes";
   import { fade, scale } from "svelte/transition";
+  import type { Snippet } from "svelte";
 
-  type Props = { children: any };
+  type Props = { children: Snippet };
   let { children }: Props = $props();
 </script>
 

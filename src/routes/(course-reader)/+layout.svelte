@@ -5,8 +5,9 @@
   import { transitionKey, currentLo } from "$lib/runes";
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import CourseShell from "$lib/ui/app-shells/CourseShell.svelte";
+  import type { Snippet } from "svelte";
 
-  type Props = { children: any };
+  type Props = { children: Snippet };
   let { children }: Props = $props();
 
   initializeStores();
