@@ -43,14 +43,14 @@
   />
 </svelte:head>
 
-<div class="block fixed w-full mx-auto bottom-0 lg:hidden bg-primary-50-900-token z-30">
+<div class="block fixed w-full bottom-0 lg:hidden bg-primary-50-900-token z-30 -ml-10">
   <nav class="flex flex-wrap justify-between p-2">
     {@html lab.horizontalNavbarHtml}
   </nav>
 </div>
 
-<div class="w-full">
-  <div class="flex max-w-l">
+<div class="flex">
+  <div class="flex-none">
     <div class="hidden lg:block h-auto w-72 mr-2">
       <div class="sticky h-auto card bg-surface-100-800-token py-4 m-2 rounded-xl top-6">
         <nav class="nav-list">
@@ -60,10 +60,8 @@
         </nav>
       </div>
     </div>
-    <div id="lab-panel" class="flex-1 min-h-screen">
-      <article class="prose dark:prose-invert max-w-2xl">
-        {@html lab.content}
-      </article>
-    </div>
+  </div>
+  <div id="lab-panel" class="min-h-screen prose dark:prose-invert w-full md:!max-w-none mr-4">
+    {@html lab.content}
   </div>
 </div>
