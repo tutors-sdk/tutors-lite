@@ -49,8 +49,8 @@
   </nav>
 </div>
 
-<div class="flex">
-  <div class="flex-none">
+<div class="w-full">
+  <div class="flex max-w-l">
     <div class="hidden lg:block h-auto w-72 mr-2">
       <div class="sticky h-auto card bg-surface-100-800-token py-4 m-2 rounded-xl top-6">
         <nav class="nav-list">
@@ -60,8 +60,10 @@
         </nav>
       </div>
     </div>
-  </div>
-  <div id="lab-panel" class="min-h-screen prose dark:prose-invert w-full md:!max-w-none mr-4">
-    {@html lab.content}
+    <div id="lab-panel" class="flex-1 min-h-screen">
+      <article class="prose dark:prose-invert max-w-none mr-4">
+        {@html lab.content}
+      </article>
+    </div>
   </div>
 </div>
