@@ -2,17 +2,11 @@
   import { AppShell, Modal } from "@skeletonlabs/skeleton";
   import Sidebars from "$lib/ui/navigators/sidebars/Sidebars.svelte";
   import Footer from "$lib/ui/navigators/footers/Footer.svelte";
-  import CalendarButton from "$lib/ui/navigators/buttons/CalendarButton.svelte";
-  import MainNavigator from "$lib/ui/navigators/MainNavigator.svelte";
-  import LayoutMenu from "$lib/ui/themes/menu/LayoutMenu.svelte";
   import SecondaryNavigator from "$lib/ui/navigators/SecondaryNavigator.svelte";
-  import CourseTitle from "$lib/ui/navigators/titles/CourseTitle.svelte";
-  import TocButton from "$lib/ui/navigators/buttons/TocButton.svelte";
-  import InfoButton from "$lib/ui/navigators/buttons/InfoButton.svelte";
-  import SearchButton from "$lib/ui/navigators/buttons/SearchButton.svelte";
-  import { currentCourse, transitionKey } from "$lib/runes";
+  import { transitionKey } from "$lib/runes";
   import { fade, scale } from "svelte/transition";
   import type { Snippet } from "svelte";
+  import MainNavigator from "../navigators/MainNavigator.svelte";
 
   type Props = { children: Snippet };
   let { children }: Props = $props();
@@ -22,25 +16,7 @@
   <Modal />
   <Sidebars />
   <svelte:fragment slot="header">
-    <MainNavigator>
-      <svelte:fragment slot="lead">
-        <InfoButton />
-        <CourseTitle />
-      </svelte:fragment>
-      <CalendarButton />
-      <svelte:fragment slot="trail">
-        {#if !currentCourse?.value?.isPortfolio}
-          <SearchButton />
-        {/if}
-        <span class="divider-vertical h-10 hidden lg:block"></span>
-        <LayoutMenu />
-        <span class="divider-vertical h-10 hidden lg:block"></span>
-
-        {#if !currentCourse?.value?.isPortfolio}
-          <TocButton />
-        {/if}
-      </svelte:fragment>
-    </MainNavigator>
+    <MainNavigator />
     <SecondaryNavigator />
   </svelte:fragment>
 
