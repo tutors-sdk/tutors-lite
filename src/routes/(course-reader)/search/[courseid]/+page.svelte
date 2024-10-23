@@ -4,7 +4,7 @@
   import { isValid, searchHits } from "$lib/services/utils/search";
   import type { Lo } from "$lib/services/models/lo-types";
   import type { Course } from "$lib/services/models/lo-types";
-  import { currentLo } from "$lib/stores";
+  import { currentLo } from "$lib/runes";
   import { filterByType } from "$lib/services/models/lo-utils";
   import { convertMdToHtml } from "$lib/services/models/markdown-utils";
 
@@ -18,7 +18,7 @@
 
   onMount(async () => {
     course = data.course;
-    currentLo.set(data.course);
+    currentLo.value = data.course;
     const labs = filterByType(data.course.los, "lab");
     const steps = filterByType(data.course.los, "step");
     const notes = filterByType(data.course.los, "note");

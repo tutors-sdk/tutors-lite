@@ -1,4 +1,4 @@
-import { courseUrl, currentCourse, currentLo } from "$lib/stores";
+import { courseUrl, currentCourse, currentLo } from "$lib/runes";
 import type { Lo, Course, Lab } from "$lib/services/models/lo-types";
 import { decorateCourseTree } from "./models/lo-tree";
 import { LiveLab } from "./models/live-lab";
@@ -50,16 +50,16 @@ export const courseService = {
 
   async readCourse(courseId: string, fetchFunction: typeof fetch): Promise<Course> {
     const course = await this.getOrLoadCourse(courseId, fetchFunction);
-    currentCourse.set(course);
-    currentLo.set(course);
-    courseUrl.set(course.courseUrl);
+    currentCourse.value = course;
+    currentLo.value = course;
+    courseUrl.value = course.courseUrl;
     return course;
   },
 
   async readTopic(courseId: string, topicId: string, fetchFunction: typeof fetch): Promise<Lo> {
     const course = await this.readCourse(courseId, fetchFunction);
     const topic = course.topicIndex.get(topicId);
-    if (topic) currentLo.set(topic);
+    if (topic) currentLo.value = topic;
     return topic!;
   },
 
@@ -78,7 +78,7 @@ export const courseService = {
       this.labs.set(labId, liveLab);
     }
 
-    currentLo.set(liveLab.lab);
+    currentLo.value = liveLab.lab;
     return liveLab;
   },
 
@@ -91,7 +91,7 @@ export const courseService = {
   async readLo(courseId: string, loId: string, fetchFunction: typeof fetch): Promise<Lo> {
     const course = await this.readCourse(courseId, fetchFunction);
     const lo = course.loIndex.get(loId);
-    if (lo) currentLo.set(lo);
+    if (lo) currentLo.value = lo;
     return lo!;
   }
 };

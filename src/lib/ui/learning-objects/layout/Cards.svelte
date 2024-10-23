@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { currentCourse } from "$lib/stores";
+  import { currentCourse } from "$lib/runes";
   import Card from "./Card.svelte";
   import type { Lo } from "$lib/services/models/lo-types";
   import { setShowHide } from "$lib/services/models/lo-utils";
@@ -27,8 +27,8 @@
   }
 
   onMount(async () => {
-    if ($currentCourse?.properties.ignorepin) {
-      ignorePin = $currentCourse.properties.ignorepin.toString();
+    if (currentCourse?.value?.properties.ignorepin) {
+      ignorePin = currentCourse?.value?.properties.ignorepin.toString();
       window.addEventListener("keydown", keypressInput);
     }
   });

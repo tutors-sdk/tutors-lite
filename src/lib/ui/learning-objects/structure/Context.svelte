@@ -1,7 +1,11 @@
 <script lang="ts">
   import type { Lo } from "$lib/services/models/lo-types";
+  import type { Snippet } from "svelte";
   import LoContextPanel from "../layout/LoContextPanel.svelte";
-  export let lo: Lo;
+  type Props = { children: Snippet; lo: Lo };
+
+  let { children, lo }: Props = $props();
+
   let loContext = lo;
   if (loContext) {
     while (loContext.type !== "topic" && loContext.type !== "course") {
@@ -12,9 +16,7 @@
 
 <div class="flex justify-between ml-10 mr-10">
   <div class="w-full">
-    {#key lo}
-      <slot />
-    {/key}
+    {@render children()}
   </div>
   {#if loContext}
     <div class="hidden xl:block h-auto w-72 mr-2">

@@ -1,61 +1,31 @@
 <script lang="ts">
-  import { AppShell, Toast, Modal, getToastStore, type DrawerSettings, getDrawerStore } from "@skeletonlabs/skeleton";
+  import { AppShell, Modal } from "@skeletonlabs/skeleton";
   import Sidebars from "$lib/ui/navigators/sidebars/Sidebars.svelte";
   import Footer from "$lib/ui/navigators/footers/Footer.svelte";
-  import CalendarButton from "$lib/ui/navigators/buttons/CalendarButton.svelte";
-  import MainNavigator from "$lib/ui/navigators/MainNavigator.svelte";
-  import LayoutMenu from "$lib/ui/themes/menu/LayoutMenu.svelte";
   import SecondaryNavigator from "$lib/ui/navigators/SecondaryNavigator.svelte";
-  import CourseTitle from "$lib/ui/navigators/titles/CourseTitle.svelte";
-  import TocButton from "$lib/ui/navigators/buttons/TocButton.svelte";
-  import InfoButton from "$lib/ui/navigators/buttons/InfoButton.svelte";
-  import SearchButton from "$lib/ui/navigators/buttons/SearchButton.svelte";
-  import { currentCourse, transitionKey } from "$lib/stores";
+  import { transitionKey } from "$lib/runes";
+  import { fade, scale } from "svelte/transition";
+  import type { Snippet } from "svelte";
+  import MainNavigator from "../navigators/MainNavigator.svelte";
 
-  import { fade } from "svelte/transition";
-
-  import type { Course } from "$lib/services/models/lo-types";
-
-  const drawerStore = getDrawerStore();
-
-  let course: Course;
-  currentCourse.subscribe((current) => {
-    course = current;
-  });
+  type Props = { children: Snippet };
+  let { children }: Props = $props();
 </script>
 
 <AppShell class="h-screen">
-  <Toast />
   <Modal />
   <Sidebars />
   <svelte:fragment slot="header">
-    <MainNavigator>
-      <svelte:fragment slot="lead">
-        <InfoButton />
-        <CourseTitle />
-      </svelte:fragment>
-      <CalendarButton />
-      <svelte:fragment slot="trail">
-        {#if !$currentCourse.isPortfolio}
-          <SearchButton />
-        {/if}
-        <span class="divider-vertical h-10 hidden lg:block" />
-        <LayoutMenu />
-        <span class="divider-vertical h-10 hidden lg:block" />
-
-        {#if !$currentCourse.isPortfolio}
-          <TocButton />
-        {/if}
-      </svelte:fragment>
-    </MainNavigator>
+    <MainNavigator />
     <SecondaryNavigator />
   </svelte:fragment>
-  {#key $transitionKey}
+
+  {#key transitionKey.value}
     <div id="app" class="h-full">
-      <div id="top" />
+      <div id="top"></div>
       <div class="mx-auto my-4">
         <div in:fade={{ duration: 300, delay: 200 }}>
-          <slot />
+          {@render children()}
         </div>
       </div>
     </div>

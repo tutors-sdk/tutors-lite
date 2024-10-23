@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { currentCourse, currentLo } from "$lib/stores";
+  import type { Lo } from "$lib/services/models/lo-types";
+  import { currentCourse, currentLo } from "$lib/runes";
   import Icon from "./Icon.svelte";
   let truncated = [true, true, true, true, true, true, true];
 
@@ -17,21 +18,13 @@
     return input;
   }
 
-  interface Crumb {
-    route: string;
-    type: string;
-    title: string;
-  }
-  let breadCrumbs: Crumb[] = [];
+  let breadCrumbs: Lo[] = $derived(currentLo?.value?.breadCrumbs!);
 
-  currentLo.subscribe((lo) => {
-    breadCrumbs = [];
-    lo.breadCrumbs?.forEach((lo) => {
-      let route = lo.route;
-      if (route.endsWith("/")) {
-        route = route.slice(0, -1);
+  $effect(() => {
+    breadCrumbs.forEach((lo) => {
+      if (lo.route.endsWith("/")) {
+        lo.route = lo.route.slice(0, -1);
       }
-      breadCrumbs.push({ route: route, type: lo.type, title: lo.title });
     });
     if (breadCrumbs.length > 2) {
       if (breadCrumbs[1].type === "unit" || breadCrumbs[1].type === "side") {
@@ -43,9 +36,9 @@
 
 <div class="my-2 mx-8 overflow-hidden p-1">
   <ol class="breadcrumb-nonresponsive text-xs">
-    {#if $currentCourse?.properties?.parent != null}
+    {#if currentCourse?.value?.properties?.parent != null}
       <li class="crumb">
-        <a href="/{$currentCourse.properties?.parent}" class="!space-x-[-1rem] lg:!space-x-0">
+        <a href="/{currentCourse?.value?.properties?.parent}" class="!space-x-[-1rem] lg:!space-x-0">
           <Icon type="programHome" tip={`Go to Course Home`} />
         </a>
       </li>

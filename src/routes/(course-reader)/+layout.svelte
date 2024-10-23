@@ -1,35 +1,29 @@
 <script lang="ts">
   import "../../app.postcss";
   import { page } from "$app/stores";
-  import { onMount } from "svelte";
-  import { initializeStores, storePopup, setInitialClassState } from "@skeletonlabs/skeleton";
-  import { storeTheme, transitionKey, currentLo } from "$lib/stores";
+  import { initializeStores, storePopup } from "@skeletonlabs/skeleton";
+  import { transitionKey, currentLo } from "$lib/runes";
   import { computePosition, autoUpdate, flip, shift, offset, arrow } from "@floating-ui/dom";
   import CourseShell from "$lib/ui/app-shells/CourseShell.svelte";
+  import type { Snippet } from "svelte";
+
+  type Props = { children: Snippet };
+  let { children }: Props = $props();
 
   initializeStores();
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
-  function setBodyThemeAttribute(): void {
-    document.body.setAttribute("data-theme", $storeTheme);
-  }
-
-  onMount(() => {
-    setInitialClassState();
-    storeTheme.subscribe(setBodyThemeAttribute);
-  });
-
   page.subscribe((path) => {
-    if (["course", "topic", "unit"].includes($currentLo.type)) {
-      transitionKey.set(path.url.pathname);
+    if (["course", "topic", "unit"].includes(currentLo?.value?.type!)) {
+      transitionKey.value = path.url.pathname;
     }
   });
 </script>
 
 <svelte:head>
-  <title>{$currentLo?.title}</title>
+  <title>{currentLo?.value?.title}</title>
 </svelte:head>
 
 <CourseShell>
-  <slot />
+  {@render children()}
 </CourseShell>
