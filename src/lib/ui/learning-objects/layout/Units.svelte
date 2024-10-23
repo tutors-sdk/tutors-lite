@@ -7,7 +7,6 @@
   export let inSidebar: boolean = false;
 
   let text = "!text-xl font-semibold";
-  export let inSidebar: boolean = false;
 </script>
 
 <div class={inSidebar ? "flex flex-col" : "grid grid-cols-1"}>
