@@ -4,6 +4,7 @@
   import Cards from "./Cards.svelte";
   import Image from "../../themes/Image.svelte";
   export let units: Composite[];
+  export let inSidebar: boolean = false;
 
   let text = "!text-xl font-semibold";
   export let inSidebar: boolean = false;
