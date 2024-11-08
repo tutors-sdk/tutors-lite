@@ -59,7 +59,7 @@ export const tutorsConnectService: TutorsConnectService = {
     }
   },
 
-  courseVisit(course: Course, student: TutorsId) {
+  courseVisit(course: Course) {
     this.profile.logCourseVisit(course);
     presenceService.startPresenceListener(course.courseId);
     if (course.authLevel! > 0 && !this.tutorsId.value?.login) {
