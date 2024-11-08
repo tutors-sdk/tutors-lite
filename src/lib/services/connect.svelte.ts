@@ -32,7 +32,6 @@ export const tutorsConnectService: TutorsConnectService = {
           localStorage.share = true;
         }
         this.tutorsId.value.share = localStorage.share;
-        console.log("sharing is in connect: " + this.tutorsId.value.share);
         if (localStorage.loginCourse) {
           const courseId = localStorage.loginCourse;
           localStorage.removeItem("loginCourse");
