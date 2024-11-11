@@ -8,10 +8,7 @@ import { tutorsConnectService } from "./connect.svelte";
 const partyKitServer = PUBLIC_party_kit_main_room;
 
 export const presenceService: PresenceService = {
-  partyKitAll: new PartySocket({
-    host: partyKitServer,
-    room: "tutors-all-course-access"
-  }),
+  partyKitAll: <PartySocket>{},
   partyKitCourse: <PartySocket>{},
   listeningTo: "",
   studentsOnline: rune<LoRecord[]>([]),
@@ -32,6 +29,13 @@ export const presenceService: PresenceService = {
         refreshLoRecord(studentEvent, nextCourseEvent);
       }
     }
+  },
+
+  connectToAllCourseAccess(): void {
+    this.partyKitAll = new PartySocket({
+      host: partyKitServer,
+      room: "tutors-all-course-access"
+    });
   },
 
   startPresenceListener(courseId: string) {

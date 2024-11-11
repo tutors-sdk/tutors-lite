@@ -70,6 +70,7 @@ export interface TutorsConnectService {
   tutorsId: any;
   profile: ProfileStore;
   intervalId: any;
+  anonMode: boolean;
 
   connect(redirectStr: string): void;
   reconnect(user: TutorsId): void;
@@ -103,5 +104,6 @@ export interface PresenceService {
 
   studentListener(event: any): void;
   sendLoEvent(course: Course, lo: Lo, student: TutorsId): void;
+  connectToAllCourseAccess(): void;
   startPresenceListener(courseId: string): void;
 }
