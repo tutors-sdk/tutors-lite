@@ -10,11 +10,19 @@ import { supabaseProfile } from "./profiles/supabaseProfile.svelte";
 import { currentCourse, currentLo } from "$lib/runes";
 import { analyticsService } from "./analytics.svelte";
 import { presenceService } from "./presence.svelte";
+import { PUBLIC_ANON_MODE } from "$env/static/public";
+
+let anonMode = false;
+
+if (PUBLIC_ANON_MODE === "TRUE") {
+  anonMode = true;
+}
 
 export const tutorsConnectService: TutorsConnectService = {
   tutorsId: rune<TutorsId | null>(null),
   profile: localStorageProfile,
   intervalId: null,
+  anonMode: false,
 
   async connect(redirectStr: string) {
     if (redirectStr === "/") {
@@ -24,6 +32,8 @@ export const tutorsConnectService: TutorsConnectService = {
   },
 
   reconnect(user: TutorsId) {
+    if (anonMode) return;
+    presenceService.connectToAllCourseAccess();
     if (user) {
       this.tutorsId.value = user;
       this.profile = supabaseProfile;
@@ -59,6 +69,7 @@ export const tutorsConnectService: TutorsConnectService = {
   },
 
   courseVisit(course: Course) {
+    if (anonMode) return;
     this.profile.logCourseVisit(course);
     presenceService.startPresenceListener(course.courseId);
     if (course.authLevel! > 0 && !this.tutorsId.value?.login) {
@@ -76,6 +87,7 @@ export const tutorsConnectService: TutorsConnectService = {
   },
 
   learningEvent(params: Record<string, string>): void {
+    if (anonMode) return;
     if (currentCourse.value && currentLo.value && this.tutorsId.value) {
       analyticsService.learningEvent(currentCourse.value, params, currentLo.value, this.tutorsId.value);
       if (this.tutorsId.value.share === "true") {
@@ -85,6 +97,7 @@ export const tutorsConnectService: TutorsConnectService = {
   },
 
   startTimer() {
+    if (anonMode) return;
     this.intervalId = setInterval(() => {
       if (!document.hidden && currentCourse.value && currentLo.value && this.tutorsId.value) {
         analyticsService.updatePageCount(currentCourse.value, currentLo.value, this.tutorsId.value);
