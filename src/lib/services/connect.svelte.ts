@@ -25,9 +25,6 @@ export const tutorsConnectService: TutorsConnectService = {
   anonMode: false,
 
   async connect(redirectStr: string) {
-    if (redirectStr === "/") {
-      redirectStr = "/dashboard";
-    }
     return await signIn("github", { callbackUrl: redirectStr });
   },
 
@@ -52,9 +49,6 @@ export const tutorsConnectService: TutorsConnectService = {
   },
 
   disconnect(redirectStr: string) {
-    if (redirectStr === "/") {
-      redirectStr = "/dashboard";
-    }
     signOut({ callbackUrl: redirectStr });
   },
 
