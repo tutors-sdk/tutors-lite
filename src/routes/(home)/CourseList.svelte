@@ -20,14 +20,14 @@
   <div class="mx-auto grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
     {#each courseVisits as courseVisit}
       <div class="card card-hover m-2 !bg-surface-50 dark:!bg-surface-700">
-        <div class="flex">
+        <div class="flex justify-between">
           <section class="p-4">
             <p class="line-clamp-1 font-bold">{courseVisit.title}</p>
             <p class="line-clamp-1">{courseVisit.credits}</p>
             <p>Last Accessed: {courseVisit.lastVisit?.slice(0, 10)} {courseVisit.lastVisit.slice(11, 19)}</p>
             <p>Visits: {courseVisit.visits}</p>
           </section>
-          <section class="content-center justify-center">
+          <section class="content-center">
             {#if courseVisit.icon}
               <Iconify icon={courseVisit.icon.type} color={courseVisit.icon.color} height="96" />
             {:else}
