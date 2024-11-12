@@ -24,7 +24,10 @@
           <section class="p-4">
             <p class="line-clamp-1 font-bold">{courseVisit.title}</p>
             <p class="line-clamp-1">{courseVisit.credits}</p>
-            <p>Last Accessed: {courseVisit.lastVisit?.slice(0, 10)} {courseVisit.lastVisit.slice(11, 19)}</p>
+            <p class="line-clamp-1">
+              Last Accessed: {courseVisit.lastVisit?.slice(0, 10)}
+              {courseVisit.lastVisit.slice(11, 19)}
+            </p>
             <p>Visits: {courseVisit.visits}</p>
           </section>
           <section class="content-center">
