@@ -28,9 +28,9 @@
       <hr />
     {/if}
     <li>
-      <a href="/dashboard">
+      <a href="/">
         <Icon icon="fluent:home-24-filled" color="rgba(var(--color-primary-500))" height="20" />
-        <div class="ml-2">Dashboard</div>
+        <div class="ml-2">Home</div>
       </a>
     </li>
   </ul>

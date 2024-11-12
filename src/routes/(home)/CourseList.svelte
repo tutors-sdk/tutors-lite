@@ -16,7 +16,7 @@
 </script>
 
 <div class="card container mx-auto my-4 p-8">
-  <p class="pb-4 text-2xl font-bold">Your previously accessed courses</p>
+  <p class="pb-4 text-2xl">Your previously accessed courses</p>
   <div class="mx-auto grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
     {#each courseVisits as courseVisit}
       <div class="card card-hover m-2 !bg-surface-50 dark:!bg-surface-700">

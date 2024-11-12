@@ -1,15 +1,19 @@
 <script lang="ts">
-  import "../../app.css";
-  import TutorsLinks from "./TutorsLinks.svelte";
-  import TutorsValues from "./TutorsValues.svelte";
-  import TutorsCredits from "./TutorsCredits.svelte";
-  import HomeFooter from "$lib/ui/navigators/footers/HomeFooter.svelte";
-  import TutorsShell from "$lib/ui/app-shells/TutorsShell.svelte";
+  import CourseList from "./CourseList.svelte";
+  import Links from "./Links.svelte";
+  import TutorsInfo from "./TutorsInfo.svelte";
+  import Welcome from "./Welcome.svelte";
 </script>
 
-<TutorsShell>
-  <TutorsLinks />
-  <TutorsValues />
-  <TutorsCredits />
-  <HomeFooter />
-</TutorsShell>
+<div class="to-accent-50 dark:to-accent-900 bg-gradient-to-l from-primary-50 dark:from-primary-900">
+  <div class="container mx-auto items-center justify-between lg:flex">
+    <div>
+      <Welcome />
+    </div>
+    <div class="mx-4 lg:w-1/2">
+      <TutorsInfo />
+      <Links />
+    </div>
+  </div>
+</div>
+<CourseList />

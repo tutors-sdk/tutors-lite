@@ -79,7 +79,7 @@ export interface TutorsConnectService {
 
   courseVisit(course: Course, user: TutorsId): void;
   deleteCourseVisit(courseId: string): void;
-  getCourseVisits(): void;
+  getCourseVisits(): Promise<CourseVisit[]>;
 
   learningEvent(params: Record<string, string>): void;
   startTimer(): void;
