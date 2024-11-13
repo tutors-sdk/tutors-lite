@@ -39,6 +39,8 @@ export const presenceService: PresenceService = {
   },
 
   startPresenceListener(courseId: string) {
+    this.studentsOnline.value = [];
+    this.studentEventMap.clear();
     this.listeningTo = courseId;
     this.partyKitCourse = new PartySocket({
       host: partyKitServer,
