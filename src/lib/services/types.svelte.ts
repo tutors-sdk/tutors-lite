@@ -16,7 +16,7 @@ export type CourseVisit = {
   icon?: IconType;
   lastVisit: Date;
   credits: string;
-  visits: number;
+  visits?: number;
 };
 
 export interface LoUser {

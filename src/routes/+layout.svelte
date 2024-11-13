@@ -14,7 +14,7 @@
   initializeStores();
   storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
-  if (data.user) {
+  if (data?.user) {
     tutorsConnectService.reconnect(data.user);
   }
 </script>
