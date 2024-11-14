@@ -11,8 +11,10 @@
   let { lo }: Props = $props();
 
   let adobeDCView: any = null;
+  let mounted = false;
 
   function displayPDF() {
+    if (!mounted) return;
     adobeDCView = new window.AdobeDC.View({
       clientId: PUBLIC_PDF_KEY,
       divId: "adobe-pdf-viewer"
@@ -41,23 +43,26 @@
     );
   }
   page.subscribe((path) => {
-    if (window.AdobeDC) {
+    console.log(path);
+    if (window.AdobeDC && path.data.lo) {
       displayPDF();
     }
   });
 
   onMount(() => {
     // Wait for AdobeDC.View to load before initializing
-    console.log("mounting");
-    if (window.AdobeDC) {
-      displayPDF();
-    } else {
-      // Add an event listener to initialize after the library loads
-      window.addEventListener("adobe_dc_view_sdk.ready", initializeAdobeDCView);
-    }
+    // console.log("mounting");
+    // if (window.AdobeDC) {
+    //   displayPDF();
+    // } else {
+    // Add an event listener to initialize after the library loads
+    window.addEventListener("adobe_dc_view_sdk.ready", initializeAdobeDCView);
+    // }
   });
 
   function initializeAdobeDCView() {
+    console.log("lobrary initialised");
+    mounted = true;
     displayPDF();
   }
 </script>
