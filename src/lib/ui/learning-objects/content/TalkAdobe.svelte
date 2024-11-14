@@ -12,6 +12,10 @@
   let loading = false;
   let adobeDCView;
 
+  $effect(() => {
+    initializeAdobeDCView();
+  });
+
   onMount(() => {
     // Wait for AdobeDC.View to load before initializing
     if (window.AdobeDC) {
