@@ -44,7 +44,7 @@
   }
   page.subscribe((path) => {
     console.log(path);
-    if (window.AdobeDC && path.data.lo) {
+    if (window.AdobeDC && path.data.lo && path.data.lo.pdf) {
       displayPDF();
     }
   });
