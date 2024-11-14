@@ -64,8 +64,8 @@ export const tutorsConnectService: TutorsConnectService = {
   },
 
   courseVisit(course: Course) {
-    updateCourseList(course);
     if (anonMode) return;
+    updateCourseList(course);
     this.profile.logCourseVisit(course);
     presenceService.startPresenceListener(course.courseId);
     if (course.authLevel! > 0 && !this.tutorsId.value?.login) {
