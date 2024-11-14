@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import { PUBLIC_PDF_KEY } from "$env/static/public";
   import type { Talk } from "$lib/services/models/lo-types";
-  import { ProgressRadial } from "@skeletonlabs/skeleton";
+
   import { onMount } from "svelte";
 
   interface Props {
@@ -9,31 +10,14 @@
   }
   let { lo }: Props = $props();
 
-  let loading = false;
-  let adobeDCView;
+  let adobeDCView: any = null;
 
-  $effect(() => {
-    initializeAdobeDCView();
-  });
-
-  onMount(() => {
-    // Wait for AdobeDC.View to load before initializing
-    if (window.AdobeDC) {
-      initializeAdobeDCView();
-    } else {
-      // Add an event listener to initialize after the library loads
-      window.addEventListener("adobe_dc_view_sdk.ready", initializeAdobeDCView);
-    }
-  });
-
-  function initializeAdobeDCView() {
-    // Create an instance of AdobeDC.View
+  function displayPDF() {
     adobeDCView = new window.AdobeDC.View({
       clientId: PUBLIC_PDF_KEY,
       divId: "adobe-pdf-viewer"
     });
 
-    // Call the previewFile method to display the PDF
     adobeDCView.previewFile(
       {
         content: {
@@ -45,20 +29,42 @@
           fileName: lo.title
         }
       },
-      { showAnnotationTools: false, defaultViewMode: "FIT_WIDTH" }
+      {
+        defaultViewMode: "FIT_WIDTH", // Options are "FIT_WIDTH" or "FIT_PAGE"
+        showAnnotationTools: false, // Hide annotation tools
+        enableAnnotationAPIs: false, // Disable annotations completely
+        showLeftHandPanel: false, // Hide left panel for better focus on the document
+        showDownloadPDF: true, // Optionally disable download button
+        showPrintPDF: true,
+        showFullScreen: true
+      }
     );
+  }
+  page.subscribe((path) => {
+    if (window.AdobeDC) {
+      displayPDF();
+    }
+  });
+
+  onMount(() => {
+    // Wait for AdobeDC.View to load before initializing
+    console.log("mounting");
+    if (window.AdobeDC) {
+      displayPDF();
+    } else {
+      // Add an event listener to initialize after the library loads
+      window.addEventListener("adobe_dc_view_sdk.ready", initializeAdobeDCView);
+    }
+  });
+
+  function initializeAdobeDCView() {
+    displayPDF();
   }
 </script>
 
-{#if !loading}
-  <div class="aspect-w-16 aspect-h-9 w-full">
-    <div id="adobe-pdf-viewer" class="h-dvh w-full"></div>
-  </div>
-{:else}
-  <div class="mb-72 mt-72 flex flex-col items-center justify-center">
-    <ProgressRadial stroke={100} meter="stroke-primary-500" track="stroke-primary-500/30" width="w-20" />
-  </div>
-{/if}
+<div class="aspect-w-16 aspect-h-9 w-full">
+  <div id="adobe-pdf-viewer" class="h-[85dvh] w-full"></div>
+</div>
 
 <svelte:head>
   <script type="text/javascript" src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
