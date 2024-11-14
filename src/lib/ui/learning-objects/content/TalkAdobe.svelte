@@ -3,8 +3,6 @@
   import { PUBLIC_PDF_KEY } from "$env/static/public";
   import type { Talk } from "$lib/services/models/lo-types";
 
-  import { onMount } from "svelte";
-
   interface Props {
     lo: Talk;
   }
@@ -43,31 +41,18 @@
     );
   }
   page.subscribe((path) => {
-    console.log(path);
-    if (window.AdobeDC && path.data.lo && path.data.lo.pdf) {
+    if (path.data.lo && path.data.lo.pdf) {
       displayPDF();
     }
   });
 
-  onMount(() => {
-    // Wait for AdobeDC.View to load before initializing
-    // console.log("mounting");
-    // if (window.AdobeDC) {
-    //   displayPDF();
-    // } else {
-    // Add an event listener to initialize after the library loads
-    window.addEventListener("adobe_dc_view_sdk.ready", initializeAdobeDCView);
-    // }
-  });
-
-  function initializeAdobeDCView() {
-    console.log("lobrary initialised");
+  window.addEventListener("adobe_dc_view_sdk.ready", () => {
     mounted = true;
     displayPDF();
-  }
+  });
 </script>
 
-<div class="aspect-w-16 aspect-h-9 w-full">
+<div class="card mr-2 mt-2 px-4 py-2">
   <div id="adobe-pdf-viewer" class="h-[85dvh] w-full"></div>
 </div>
 
