@@ -20,7 +20,7 @@
   </a>
   <a
     class="btn btn-xl w-60 bg-primary-500 font-bold text-white transition-all hover:scale-105"
-    href="https://tutors.dev/live"
+    href="https://live.tutors.dev"
     target="_blank"
     rel="noreferrer"
   >
