@@ -11,6 +11,7 @@
   };
   let { lo }: Props = $props();
 
+  // svelte-ignore non_reactive_update
   let target = "";
   if (lo.type === "web") {
     if (lo.route.startsWith("http")) {
@@ -39,8 +40,9 @@
         <div class="line-clamp-2 flex-auto {headingText} !text-black dark:!text-white">
           {lo.title}
         </div>
-        {#if currentCourse?.value?.areVideosHidden}
+        {#if !currentCourse?.value?.areVideosHidden}
           {#if lo.video && lo.type !== "video"}
+            <!-- svelte-ignore node_invalid_placement_ssr -->
             <a href={lo.video}>
               <Icon type="video" />
             </a>

@@ -11,6 +11,7 @@ import { currentCourse, currentLo } from "$lib/runes";
 import { analyticsService } from "./analytics.svelte";
 import { presenceService } from "./presence.svelte";
 import { PUBLIC_ANON_MODE } from "$env/static/public";
+import { updateCourseList } from "./profiles/allCourseAccess";
 
 let anonMode = false;
 
@@ -64,6 +65,7 @@ export const tutorsConnectService: TutorsConnectService = {
 
   courseVisit(course: Course) {
     if (anonMode) return;
+    updateCourseList(course);
     this.profile.logCourseVisit(course);
     presenceService.startPresenceListener(course.courseId);
     if (course.authLevel! > 0 && !this.tutorsId.value?.login) {

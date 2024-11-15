@@ -79,7 +79,7 @@
         </a>
       </li>
       <li>
-        <a href="https://live.tutors.dev/{currentCourse.value?.courseId}" target="_blank" rel="noreferrer">
+        <a href="https://live.tutors.dev/course/{currentCourse.value?.courseId}" target="_blank" rel="noreferrer">
           <Icon icon="fluent:people-list-24-filled" color="rgba(var(--color-primary-500))" height="20" />
           <div class="ml-2">Tutors Live</div>
         </a>
