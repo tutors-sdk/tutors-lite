@@ -86,7 +86,7 @@ export const tutorsConnectService: TutorsConnectService = {
     if (anonMode) return;
     if (currentCourse.value && currentLo.value && this.tutorsId.value) {
       analyticsService.learningEvent(currentCourse.value, params, currentLo.value, this.tutorsId.value);
-      if (this.tutorsId.value.share === "true") {
+      if (this.tutorsId.value.share === "true" && !currentCourse.value.isPrivate) {
         presenceService.sendLoEvent(currentCourse.value, currentLo.value, this.tutorsId.value);
       }
     }
