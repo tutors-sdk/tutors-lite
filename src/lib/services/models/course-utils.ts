@@ -103,6 +103,10 @@ export function loadPropertyFlags(course: Course) {
   course.footer = course.properties?.footer as unknown as string;
   course.areLabStepsAutoNumbered = (course.properties?.labStepsAutoNumber as unknown as boolean) === true;
   course.authLevel = course.properties.auth as unknown as number;
+  course.defaultPdfReader = "adobe";
+  if (course.properties.defaultPdfReader) {
+    course.defaultPdfReader = course.properties.defaultPdfReader;
+  }
   if (course.enrollment) {
     course.hasEnrollment = true;
   }
