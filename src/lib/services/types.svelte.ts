@@ -12,11 +12,12 @@ export type TutorsId = {
 export type CourseVisit = {
   id: string;
   title: string;
-  image?: string;
+  img?: string;
   icon?: IconType;
   lastVisit: Date;
   credits: string;
   visits?: number;
+  private: boolean;
 };
 
 export interface LoUser {
